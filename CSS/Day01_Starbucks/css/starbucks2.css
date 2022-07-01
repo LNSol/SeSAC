@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+section{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px 10vw;
+}
+section>header{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10vw;
+}
+section>header>ul{
+  display: flex;
+  align-items: center;
+}
+section>header>ul>li{
+  list-style: none;
+}
+section>header>ul>li>a{
+  display: inline-block;
+  margin-left: 30px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+.content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content>.textBox{
+  max-width: 600px;
+  min-width: 515px;
+}
+.content>.textBox>h2{
+  font-size: 3.5em;
+  font-weight: 400;
+  line-height: 1.4em;
+}
+.content>.textBox>h2>span{
+  color: #017143;
+  font-weight: 800;
+  font-size: 1.3em;
+}
+.content>.textBox>a{
+  display: inline-block;
+  background-color: #017143;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 40px;
+  letter-spacing: 1px;
+}
+.content>.imgBox{
+  display: flex;
+  justify-content: flex-end;
+}
+.content>.imgBox>img{
+  max-width: 340px;
+  max-height: 525px;
+}
+.thumb{
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  left: 40%;
+}
+.thumb>li{
+  list-style: none;
+  margin-left: 30px;
+  transition: 0.5s
+}
+.thumb>li:hover{
+  transform: translateY(-15px);
+}
+.thumb>li>img{
+  max-width: 60px;
+  cursor: pointer;
+}
+.sci{
+  position: absolute;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sci>li{
+  list-style: none;
+  margin-top: 20px;
+}
+.sci>li>a{
+  display: inline-block;
+  transform: scale(0.6);
+  /* filter: invert(); */
+}
+.sci>li>a>img{
+  filter: invert();
+}
+.circle{
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #017143;
+  clip-path: circle(700px at 100% 900px);
+}
