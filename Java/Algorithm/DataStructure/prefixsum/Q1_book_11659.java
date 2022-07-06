@@ -1,3 +1,5 @@
+// 구간 합 구하기
+// 1748ms
 package prefixsum;
 
 import java.io.BufferedReader;
