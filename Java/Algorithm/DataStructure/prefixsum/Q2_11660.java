@@ -1,4 +1,5 @@
-// 2Â÷¿ø ±¸°£ ÇÕ
+// 2ì°¨ì› êµ¬ê°„ í•©
+// 1732ms
 package prefixsum;
 
 import java.util.StringTokenizer;
@@ -14,7 +15,7 @@ public class Q2_11660 {
 		int n2 = Integer.parseInt(st.nextToken()); // 4
 		
 		
-		int[][] A = new int[n1][n1];      // ÀÔ·Â ¹è¿­
+		int[][] A = new int[n1][n1];      // ì…ë ¥ ë°°ì—´
 		for(int i=0; i<n1; i++) {
 			st = new StringTokenizer(br.readLine()); // 1 1 1 1
 			for(int j=0; j<n1; j++) {
@@ -22,15 +23,15 @@ public class Q2_11660 {
 			}
 		}
 
-		int[][] D = new int[n1+1][n1+1];  // ±¸°£ ÇÕ ¹è¿­
-		// ±¸°£ ÇÕ ¹è¿­ »ı¼º
+		int[][] D = new int[n1+1][n1+1];  // êµ¬ê°„ í•© ë°°ì—´
+		// êµ¬ê°„ í•© ë°°ì—´ ìƒì„±
 		for(int i=1; i<=n1; i++) {
 			for(int j=1; j<=n1; j++) {
 				D[i][j] = D[i][j-1] + D[i-1][j] - D[i-1][j-1] + A[i-1][j-1];
 			}
 		}
 		
-		// Äõ¸® ÀÔ·Â
+		// ì¿¼ë¦¬ ì…ë ¥
 		for(int i=0; i<n2; i++) {
 			st = new StringTokenizer(br.readLine()); // 2 2 3 4 => (2, 2) (3, 4)
 			int x1 = Integer.parseInt(st.nextToken());
