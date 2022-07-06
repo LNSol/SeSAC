@@ -1,3 +1,4 @@
+//숫자의 합 구하기
 package arraylist;
 
 import java.util.Scanner;
