@@ -1,3 +1,4 @@
+//평균 구하기
 package arraylist;
 
 import java.util.Scanner;
