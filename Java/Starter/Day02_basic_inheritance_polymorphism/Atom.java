@@ -7,10 +7,10 @@ public class Atom extends Robot {
 	
 	@Override
 	public void move() {
-		System.out.println("Atom fly");
+		System.out.println("Fly~~~!!!");
 	}
 	@Override
 	public void attack() {
-		System.out.println("Atom punch");
+		System.out.println("Punch!!!");
 	}
 }

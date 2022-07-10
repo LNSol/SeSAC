@@ -7,10 +7,10 @@ public class TaekwonV extends Robot {
 	
 	@Override
 	public void move() {
-		System.out.println("TaekwonV walk");
+		System.out.println("Walk...");
 	}
 	@Override
 	public void attack() {
-		System.out.println("TaekwonV missile");
+		System.out.println("Missile!!!");
 	}
 }
