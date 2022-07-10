@@ -4,16 +4,13 @@ import java.util.ArrayList;
 
 public class RobotManager {
 	private static RobotManager instance = null;
-	private static ArrayList<Robot> robotList;
+	private static ArrayList<Robot> robotList = new ArrayList<>();
 	
 	private RobotManager() {}
 	
 	public static RobotManager getInstance() {
 		if(instance == null) {
 			instance = new RobotManager();
-			robotList = new ArrayList<>();
-		} else {
-			System.out.println("B");
 		}
 		return instance;
 	}
