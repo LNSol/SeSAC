@@ -12,17 +12,19 @@ public class VIPCustomer extends Customer2 { //Customer2 Class 상속
 	
 	@Override
 	public int buy(int price) {
-		int salePrice = price - (int)Math.round(price * saleRate); // 3% 할인가 구함
-		return super.buy(salePrice); // Customer Class의 buy(int price) 메서드 호출
+		return super.buy(this.getSalePrice(price)); // Customer Class의 buy(int price) 메서드 호출
 	}
 	
 	@Override
 	public int buy(Merchandise m) {
-		int price = m.getPrice();		// 상품의 가격을 구함
-		int result = this.buy(price);	// 위 메서드(this.buy(int price) 호출. 즉, super의 buy(int price)메서드가 호출됨.
-		if(result != -1) {				// 구매 성공 시 상품의 누적 판매 수량 증가
-			m.accCount();
+		if(this.buy(m.getPrice()) < 0) {
+			return -1;
 		}
-		return result;
+		m.accCount();
+		return this.getAmount();
+	}
+	
+	public int getSalePrice(int price) {
+		return price - (int) Math.round(price * saleRate);
 	}
 }

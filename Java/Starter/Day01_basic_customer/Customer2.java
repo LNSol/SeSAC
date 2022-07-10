@@ -3,9 +3,9 @@ package basic1_customer;
 public class Customer2 {
 	private int id;			// 고객 아이디
 	private String name;	// 고객 이름
-	protected int amount;	// 잔액
+	private int amount;	// 잔액
 	private double rate;	// 적립율
-	protected int point;	// 포인트
+	private int point;	// 포인트
 	
 	public Customer2(int id, String name, int amount) {
 		this.id = id;
@@ -28,15 +28,15 @@ public class Customer2 {
 	// Merchandise Class를 받는 buy() 추가. (Overloading)
 	public int buy(Merchandise m) {
 		int price = m.getPrice();
-		if(this.amount < price) {
-			return -1;
+		if(this.buy(price) > 0) {
+			m.accCount();
 		}
-		this.amount = this.amount - price;
-		this.point = this.point + (int)(Math.ceil(price * this.rate));
-		
-		m.accCount();	// 구매 시 상품의 누적 판매 수 증가
-		
 		return this.amount;
+	}
+	
+	@Override
+	public String toString() {
+		return this.id + " : " + this.name;
 	}
 
 	public int getId() {
@@ -70,4 +70,13 @@ public class Customer2 {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
 }

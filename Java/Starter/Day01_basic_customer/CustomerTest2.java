@@ -22,5 +22,9 @@ public class CustomerTest2 {
 		
 		System.out.println("Amount : " + c1.buy(laptop));
 		System.out.println("Point : " + c1.getPoint());
+		
+		System.out.println(tv.getCount());
+		System.out.println(pc.getCount());
+		System.out.println(laptop.getCount());
 	}
 }
