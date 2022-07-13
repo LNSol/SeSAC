@@ -1,3 +1,4 @@
+/* 완성 아님 */
 const loginBox = document.querySelector(".login-box");
 const loginForm = loginBox.querySelector(".login-form");
 const loginInput = loginForm.querySelector("input");
@@ -13,7 +14,7 @@ const savedTodos = localStorage.getItem(`${username}`);
 
 if(username) {
   todoBox.classList.remove("hidden");
-  todoBox.querySelector("h1").innerText = `HELLO ${username}`;
+  todoBox.querySelector("h1").innerText = `[${username}] TO DO LIST`;
 } else {
   loginBox.classList.remove("hidden");
 }
@@ -26,6 +27,13 @@ todos.forEach(addToDo);
 function addToDo(newTodo) {
   const li = document.createElement("li");
   li.id = newTodo.id;
+  const checkBox = document.createElement("input");
+  checkBox.setAttribute("type", "checkbox");
+  if(newTodo.checked === true) {
+    checkBox.setAttribute("checked", "true");
+    li.classList.add("complete");
+  }
+  checkBox.addEventListener("click", checkToDo);
   const span = document.createElement("span");
   span.innerText = newTodo.text;
   const btn = document.createElement("button");
@@ -33,6 +41,7 @@ function addToDo(newTodo) {
   const del = btn.querySelector(".del");
   del.addEventListener("click", removeToDo);
 
+  li.appendChild(checkBox);
   li.appendChild(span);
   li.appendChild(btn);
   listBox.appendChild(li);
@@ -42,15 +51,36 @@ function addToDo(newTodo) {
 function removeToDo(e) {
   const li = e.target.parentElement.parentElement;
   todos = todos.filter((item) => {
-    console.log(item.id, parseInt(li.id));
     return item.id !== parseInt(li.id);
   });
   localStorage.setItem(`${username}`, JSON.stringify(todos));
   li.remove();
 }
 
+// 체크박스 이벤트 함수
+function checkToDo(e) {
+  const target = e.target;
+  const li = target.parentElement;
+  let isChecked;
 
-/* 이벤트 리스터 */
+  if(target.checked) {
+    li.classList.add("complete");
+    isChecked = true;
+  } else {
+    li.classList.remove("complete");
+    isChecked = false;
+  }
+
+  todos.forEach((item) => {
+    if(item.id === parseInt(li.id)) {
+      item.checked = isChecked;
+    }
+  });
+  localStorage.setItem(`${username}`, JSON.stringify(todos));
+}
+
+
+/* 이벤트 리스너 */
 
 // 사용자 이름 입력(로그인)
 loginForm.addEventListener("submit", e => {
@@ -66,7 +96,8 @@ todoForm.addEventListener("submit", e => {
   e.preventDefault();
   const newTodo = {
     id: Date.now(),
-    text: todoInput.value
+    text: todoInput.value,
+    checked: false,
   };
   todoInput.value = "";
 
