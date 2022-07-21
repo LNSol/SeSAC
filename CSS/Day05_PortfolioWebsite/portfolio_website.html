@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="css/portfolio_website.css">
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">Portfolio</a>
+    <div class="toggle"></div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Work</a></li>
+      <li><a href="#">Testimonial</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </header>
+
+  <section class="banner">
+    <div class="textBx">
+      <h2>Hello, I'm<br><span>EunHa Lim.</span></h2>
+      <h3>I'm a Web Developer.</h3>
+      <a href="#" class="btn">About Me</a>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="heading">
+      <h2>About Me</h2>
+    </div>
+    <div class="content">
+      <div class="contentBx w50">
+        <h3>I'm a Web Developer.</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dapibus erat, ac accumsan nisi. 
+          Praesent neque neque, fermentum nec mollis ut, maximus et ex. Nulla vel lorem urna. 
+          Etiam hendrerit, nisl vitae pellentesque tincidunt, lacus ligula rhoncus purus.
+          Praesent neque neque, fermentum nec mollis ut, maximus et ex. Nulla vel lorem urna. 
+          id efficitur magna nulla eget nibh.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dapibus erat, ac accumsan nisi. 
+          Praesent neque neque, fermentum nec mollis ut, maximus et ex. Nulla vel lorem urna. 
+          Etiam hendrerit, nisl vitae pellentesque tincidunt, lacus ligula rhoncus purus, id efficitur magna nulla eget nibh.</p>
+      </div>
+
+      <div class="w50">
+        <img src="img/img.jpg" class="img">
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="heading white">
+      <h2>Our Services</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="content">
+      <div class="servicesBx">
+        <img src="img/icon1.png">
+        <h2>Web Design</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dapibus erat, ac accumsan nisi. 
+          Praesent neque neque, fermentum nec mollis ut, maximus et ex.</p>
+      </div>
+      <div class="servicesBx">
+        <img src="img/icon2.png">
+        <h2>Web Develoopment</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dapibus erat, ac accumsan nisi. 
+          Praesent neque neque, fermentum nec mollis ut, maximus et ex.</p>
+      </div>
+      <div class="servicesBx">
+        <img src="img/icon3.png">
+        <h2>Database</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dapibus erat, ac accumsan nisi. 
+          Praesent neque neque, fermentum nec mollis ut, maximus et ex.</p>
+      </div>
+      <div class="servicesBx">
+        <img src="img/icon4.png">
+        <h2>Java</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dapibus erat, ac accumsan nisi. 
+          Praesent neque neque, fermentum nec mollis ut, maximus et ex.</p>
+      </div>
+      <div class="servicesBx">
+        <img src="img/icon5.png">
+        <h2>Linux</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dapibus erat, ac accumsan nisi. 
+          Praesent neque neque, fermentum nec mollis ut, maximus et ex.</p>
+      </div>
+      <div class="servicesBx">
+        <img src="img/icon6.png">
+        <h2>Spring</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dapibus erat, ac accumsan nisi. 
+          Praesent neque neque, fermentum nec mollis ut, maximus et ex.</p>
+      </div>
+    </div>
+  </section>  
+
+  <section class="work">
+    <div class="heading">
+      <h2>Our Latest Work</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="content">
+      <div class="workBx">
+        <img src="img/product1.jpg">
+      </div>
+      <div class="workBx">
+        <img src="img/product2.jpg">
+      </div>
+      <div class="workBx">
+        <img src="img/product3.jpg">
+      </div>
+      <div class="workBx">
+        <img src="img/product4.jpg">
+      </div>
+    </div>
+
+    <div class="heading">
+      <a href="#" class="btn">View More</a>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+    window.onload = function() {
+      window.addEventListener("scroll", function() {
+        let header = document.querySelector("header");
+        header.classList.toggle("sticky", window.scrollY > 0);
+      });
+    };
+  </script>
+</body>
+</html>
