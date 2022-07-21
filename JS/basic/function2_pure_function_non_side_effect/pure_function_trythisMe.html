@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>과목 스케줄러</title>
+  <style>
+    #container {
+      width: 600px;
+      height: 500px;
+      margin: 50px auto;
+    }
+    #container #subjectBox {
+      width: 100%;
+      height: 90%;
+      border: 1px solid green;
+      margin-top: 10px;
+    }
+    #container #subjectBox li {
+      list-style: none;
+      margin-bottom: 10px;
+    }
+    #container #subjectBox #subjectList span {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <span>과목명 : </span>
+    <input type="text" id="subjectName" />
+    <button type="button" id="addBtn">추가</button>
+    <div id="subjectBox">
+      <ul id="subjectList"></ul>
+    </div>
+  </div>
+
+  <script>
+    window.onload = () => {
+      const WEEKS = ['일', '월', '화', '수', '목', '금', '토'];
+
+      let $subjectName = document.getElementById("subjectName");
+      let $addBtn = document.getElementById("addBtn");
+      let $subjectBox = document.getElementById("subjectBox");
+      let $subjectList = document.getElementById("subjectList");
+
+      $addBtn.addEventListener("click", addSubject);
+
+
+      // 과목 추가 함수
+      function addSubject() {
+        let $li = document.createElement("li");
+        let $btn = document.createElement("button");
+        let $span = document.createElement("span");
+        $btn.id = $subjectList.childElementCount;
+        $btn.innerText = $subjectName.value + "과목 요일 선택>";
+        $span.innerText = "요일을 선택하세요!";
+
+        // 요일 선택 버튼에 이벤트 리스너 등록
+        $btn.addEventListener("click", (event) => {
+          let targetValue = scheduler(event);
+          $span.innerText = `${WEEKS[targetValue]}요일`;
+        });
+
+        $li.appendChild($btn);
+        $li.appendChild($span);
+        $subjectList.appendChild($li);
+
+        $subjectName.value = "";
+      }
+
+      // 해당 과목의 다음 요일 인덱스 구하는 함수
+      const scheduler = (function() {
+        const scheduleObj = {};
+        return function(event) {
+          const targetId = event.currentTarget.id;
+          if(scheduleObj[targetId] === undefined) {
+            scheduleObj[targetId] = -1;
+          }
+          return scheduleObj[targetId] = (scheduleObj[targetId] + 1) % 7;
+        };
+      })();
+    };
+  </script>
+</body>
+</html>
