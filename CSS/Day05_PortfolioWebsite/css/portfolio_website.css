@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
 }
 section {
   padding: 100px;
@@ -126,7 +127,7 @@ header.sticky ul li a {
   margin-bottom: 10px;
 }
 .services {
-  background: #111;
+  background: #283349;
 }
 .heading.white {
   color: #fff;
@@ -139,19 +140,18 @@ header.sticky ul li a {
 }
 .services .content .servicesBx {
   padding: 40px 20px;
-  background: #222;
-  color: #fff;
+  background: #ddc49a;
+  color: #283349;
   max-width: 340px;
   margin: 20px;
   text-align: center;
   transition: 0.5s;
 }
 .services .content .servicesBx:hover {
-  background: #ddc49a;
+  background: #faebca;
 }
 /* 이미지가 png가 아니라 */
 .services .content .servicesBx img {
-  filter: invert(1);
   max-width: 80px;
 }
 .services .content .servicesBx h2 {
@@ -174,4 +174,234 @@ header.sticky ul li a {
 .work .content .workBx img {
   max-width: 100%;
   min-height: 100%;
+}
+.testimonial {
+  background: #f7f7f7;
+}
+.testimonial .content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.testimonial .content .testimonialBx {
+  max-width: calc(50% - 40px);
+  padding: 60px 40px;
+  margin: 20px;
+  background: #ddc49a;
+}
+.testimonial .content .testimonialBx p {
+  color: #283349;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 300;
+}
+.testimonial .content .testimonialBx h3 {
+  margin-top: 40px;
+  text-align: end;
+  color: #283349;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1em;
+}
+.testimonial .content .testimonialBx h3 span {
+  font-size: 14px;
+  font-weight: 400;
+}
+.contact {
+  background: #283349;
+}
+.formBx {
+  min-width: 60%;
+}
+.formBx form {
+  display: flex;
+  flex-direction: column;
+}
+.formBx form h3,
+.contactInfo h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.formBx form input,
+.formBx form textarea {
+  margin-bottom: 20px;
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background: #222;
+  color: #fff;
+  resize: none;
+}
+.formBx form textarea {
+  min-height: 200px;
+}
+.formBx form input::placeholder,
+.formBx form textarea::placeholder {
+  color: #999;
+}
+.formBx form input[type='submit'] {
+  max-width: 100px;
+  background: #ddc49a;
+  cursor: pointer;
+  color: #283349;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.contactInfo {
+  min-width: 40%;
+}
+.contactInfoBx {
+  position: relative;
+}
+.contactInfoBx .box {
+  position: relative;
+  padding: 20px 0;
+  display: flex;
+}
+.contactInfoBx .box .icon {
+  min-width: 40px;
+  padding-top: 4px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 24px;
+}
+.contactInfoBx .box .text {
+  display: flex;
+  margin-left: 20px;
+  font-size: 16px;
+  color: #fff;
+  flex-direction: column;
+  font-weight: 300;
+}
+.contactInfoBx .box .text h3 {
+  font-weight: 500;
+  color: #ddc49a;
+  margin-bottom: 0;
+}
+.copyright {
+  background: #283349;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+
+/* Responsive */
+@media (max-width: 991px) {
+  header,
+  header.sticky {
+    padding: 20px 50px;
+  }
+  .menu {
+    position: fixed;
+    top: 75px;
+    left: -100%;
+    display: block;
+    padding: 100px 50px;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    transition: 0.5s;
+    z-index: 999;
+    border-top: 1px solid rgba(0,0,0,0.2);
+  }
+  .menu.active {
+    left: 0;
+  }
+  header ul li a {
+    color: #283349;
+    font-size: 24px;
+    margin: 10px;
+  }
+  .toggle {
+    width: 40px;
+    height: 40px;
+    background: url("../img/menu.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    cursor: pointer;
+    filter: invert(1);
+  }
+  .toggle.active {
+    background: url("../img/close.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    cursor: pointer;
+  }
+  header.sticky .toggle {
+    filter: invert(0);
+  }
+  section {
+    padding: 100px 50px;
+  }
+  .banner {
+    padding: 150px 50px 100px;
+  }
+  .banner h2 {
+    font-size: 1.5em;
+  }
+  .banner h3 {
+    font-size: 1em;
+  }
+  .btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  .heading h2 {
+    font-size: 24px;
+  }
+  .contentBx h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .content {
+    flex-direction: column;
+  }
+  .w50 {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  .services .content .servicesBx {
+    margin: 15px;
+  }
+  .work .content .workBx {
+    width: 100%;
+    padding: 15px;
+  }
+  .testimonial .content .testimonialBx {
+    max-width: 100%;
+    padding: 40px 20px;
+    margin: 10px;
+    background: #ddc49a;
+  }
+  .testimonial .content .testimonialBx h3 {
+    margin-top: 20px;
+  }
+  .contactInfo {
+    min-width: 40%;
+    margin: 20px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  header,
+  header.sticky {
+    padding: 20px 20px;
+    z-index: 1000;
+  }
+  .banner {
+    padding: 150px 20px 100px;
+  }
+  section {
+    padding: 100px 20px;
+  }
 }
