@@ -1,0 +1,12 @@
+CREATE FUNTION 'f_rand1' (_str)
+RETURNS varchar(31)
+BEGIN
+	declare v_len tinyint;
+	declare v_ret varchar(31);
+
+	set v_len = char_length(_str);
+	set v_ret = substring(_str, CEIL( rand() * v_len ), 1);
+
+
+RETURN v_ret;
+END

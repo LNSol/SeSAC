@@ -1,0 +1,12 @@
+CREATE FUNCTION f_randname ()
+RETURNS varchar(31)
+BEGIN
+	
+	declare v_firstname varchar(31) default '은보하영국연자시태별미윤성민용만진우호윤이주';
+	declare v_lastname varchar(31) default '김이박임장최전정마조윤배육심안';
+	declare v_ret varchar(31);
+
+	set v_ret = concat(f_rand1(v_lastname), f_rand1(v_firstname), f_rand1(v_firstname));
+
+RETURN v_ret;
+END
