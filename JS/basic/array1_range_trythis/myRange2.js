@@ -10,7 +10,7 @@ const range = (start, end, step) => {
     return;
   }
     
-    const last = start + (Math.floor(((end-start)/step)) * step);
+  const last = start + (Math.floor(((end-start)/step)) * step);
   
   for(let i=start; i!=(last+step); i+=step) {
     ret.push(i);
