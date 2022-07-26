@@ -19,10 +19,10 @@ const myMap = (arr, cb) => {
   // CASE #2. O - of 연산자는 빈 원소에 대해서 undefined를 넘겨줌.
   // let i = 0;
   // for(let a of arr) {
-  //   if(a !== undefined)
-  //     retArr.push(cb(a));
+  //   if(a !== undefined) retArr.push(cb(a, i, arr));
   //   retArr.length = i += 1;
   // }
+
 
 
   // CASE #3. X-배열 객체의 원소가 아닌 프로퍼티에 대해서도 콜백함수를 수행함.
@@ -38,9 +38,23 @@ const arr = [1, 2, , 4, 5, 6, , 8];
 arr.x = 10;
 arr.y = 20;
 
-const retTestMyMap = myMap(arr, (value) => { return value * value; });
+console.log("======== my Map =========");
+const retTestMyMap = myMap(arr, (value, index) => { 
+  console.log(index);
+  return value * value; });
 console.log(retTestMyMap);
 
 console.log("========= map =========");
-const retTestMap = arr.map((value) => { return value * value; });
+const retTestMap = arr.map((value, index) => { 
+  console.log(index);
+  return value * value; 
+});
 console.log(retTestMap);
+
+const assertMap = (arr, cb, expVal) => {
+  const result = myMap(arr, cb);
+  console.log(`${result}, ${expVal}`);
+  console.log(`${cb} ==> ${result} : ${(result == expVal) && '통'}`);
+};
+
+assertMap(arr, (value) => { return value * value; }, `${arr.map(value => {return value * value})}`);
