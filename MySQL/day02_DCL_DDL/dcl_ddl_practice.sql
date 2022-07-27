@@ -32,6 +32,7 @@ show variables like '%time_zone%';  -- 두 개 똑같음
 alter table Dept 
 add column workdate timestamp not null default current_timestamp
 on update current_timestamp;
+show create table Dept;
 
 select * from Dept;
 
@@ -45,10 +46,15 @@ create table Test(
     primary key(id)
 );
 select * from Test;
-insert into Test(ttt) values('aaa1'),('aaa2'),('aaa3'),('aaa4'),('aaa5');
-update Test set dept = f_rand1('34567') where id>0;
+insert into Test(ttt, dept) values('aaa1',3),('aaa2',4),('aaa3',5),('aaa4',6),('aaa5',7);
+-- update Test set dept = f_rand1('34567') where id>0;
 
 show create table Test;
 
 truncate table Test; -- id 1부터 다시 시작
--- delete from Test where id > 0; -- id 이어서 다시 시작
+-- delete from Test where id > 0; id 이어서 다시 시작
+
+update Test set ttt='한글뷐' where id=5;
+
+
+update Dept set dname='클라팀🍟' where id=7;
