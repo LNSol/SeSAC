@@ -4,6 +4,12 @@ const { INTEGER, STRING, TEXT } = Sequelize;
 module.exports = class Post extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
+      id: {
+        type: INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
       title: {
         type: STRING(100),
         allowNull: false,
@@ -37,5 +43,6 @@ module.exports = class Post extends Sequelize.Model {
   }
   static associate(db) {
     db.Post.belongsTo(db.User, { foreignKey: 'user', targetKey: 'id' });
+    db.Post.hasMany(db.Media, { foreignKey: 'post', sourceKey: 'id', onDelete: 'cascade', onUpdate: 'cascade' });
   }
 };

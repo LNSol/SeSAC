@@ -4,6 +4,12 @@ const { STRING, INTEGER, BOOLEAN } = Sequelize;
 module.exports = class User extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
+      id: {
+        type: INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
       userid: {
         type: STRING(100),
         allowNull: false,
@@ -13,6 +19,10 @@ module.exports = class User extends Sequelize.Model {
         type: STRING(15),
         allowNull: false,
         defaultValue: 'local',
+      },
+      profile_image_url: {
+        type: STRING(100),
+        allowNull: true,
       },
       nickname: {
         type: STRING(30),
@@ -52,6 +62,7 @@ module.exports = class User extends Sequelize.Model {
     });
   }
   static associate(db) {
-    db.User.hasMany(db.Post, { foreignKey: 'user', sourceKey: 'id' });
+    db.User.hasMany(db.Post, { foreignKey: 'user', sourceKey: 'id', onDelete: 'cascade', onUpdate: 'cascade' });
+    db.User.hasMany(db.Media, { foreignKey: 'user', sourceKey: 'id', onDelete: 'cascade', onUpdate: 'cascade' });
   }
 };

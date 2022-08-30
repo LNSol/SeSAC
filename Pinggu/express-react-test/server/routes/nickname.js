@@ -1,17 +1,21 @@
+const { Op } = require('sequelize');
 const express = require('express');
-const { User, Post } = require('../../models');
+const { User, Post, Media } = require('../../models');
 const router = express.Router();
 
 router.get('/:nickname', (req, res) => {
-  User.findOne({
+  Post.findAll({
     include: [{
-      model: Post,
-      attributes: ['id', 'title', 'content']
+      model: User,
+      attributes: ['nickname', 'profile_image_url'],
+      where: {
+        nickname: req.params.nickname
+      }
+    }, {
+      model: Media,
+      attributes: ['src']
     }],
-    where: {
-      nickname: req.params.nickname
-    },
-    attributes: ['nickname']
+    attributes: ['id', 'title', 'content']
   })
   .then(posts => res.json(posts))
   .catch(err => res.send(err));

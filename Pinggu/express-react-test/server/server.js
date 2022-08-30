@@ -7,6 +7,7 @@ const postsRouter = require('./routes');
 const nicknameRouter = require('./routes/nickname');
 const titleRouter = require('./routes/title');
 const contentRouter = require('./routes/content');
+const delPostRouter = require('./routes/delPost');
 
 const app = express();
 app.use(cors({ origin: 'http://localhost:3000' }));
@@ -20,10 +21,12 @@ sequelize.sync({ force: false })
     console.log(err.message);
   });
 
+app.use('/posts/upload',express.static(path.join(__dirname, '/static/media')));
 app.use('/posts', postsRouter);
 app.use('/posts/nickname', nicknameRouter);
 app.use('/posts/title', titleRouter);
 app.use('/posts/content', contentRouter);
+app.use('/posts/post', delPostRouter);
 
 app.get('/', (req, res) => {
   res.send('관리자 페이지');

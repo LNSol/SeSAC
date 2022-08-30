@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import PostList from '../components/PostList';
 
 const ContentPostsPage = () => {
   const { content } = useParams();
@@ -15,12 +16,7 @@ const ContentPostsPage = () => {
   }, [content]);
 
   return (
-    <div>
-      {posts.length === 0 ? <p>검색 결과 없음</p> :
-      posts.map(({ id, title, content, User}) => (
-        <p key={id}>nickname: {User.nickname}, title: {title}, content: {content}</p>
-      ))}
-    </div>
+    <PostList posts={posts} />
   );
 };
 export default ContentPostsPage;

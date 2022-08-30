@@ -1,4 +1,4 @@
-const { User, Post } = require('../../models');
+const { User, Post, Media } = require('../../models');
 const express = require('express');
 const router = express.Router();
 
@@ -7,8 +7,12 @@ router.get('/', async (req, res) => {
     const posts = await Post.findAll({
       include: [{
         model: User,
-        attributes: ['nickname']
-      }]
+        attributes: ['nickname', 'profile_image_url']
+      }, {
+        model: Media,
+        attributes: ['src']
+      }],
+      attributes: ['id', 'title', 'content']
     });
     res.json(posts);
   } catch (err) {

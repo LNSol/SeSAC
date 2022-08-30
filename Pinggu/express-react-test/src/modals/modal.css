@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.modal.active {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  transition: 1 ease-in;
+}
+.modalBox {
+  background: rgb(240, 240, 240);
+  width: 580px;
+  height: 800px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.modalBox > .title {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+.modalBox > .main {
+  height: 310px;
+}
+.modalBox > .main > .main-user {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.modalBox > .main > .main-user > .main-user-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.modalBox > .main > .main-user > .main-user-img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.modalBox > .main > .main-user > p {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 0.9rem;
+}
+.modalBox > .main > .main-content {
+  margin: 5px 5px;
+  padding: 15px;
+  height: 225px;
+  overflow-y: scroll;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.modalBox > .post-image-slider {
+  margin-left: 40px;
+}
+.modalBox > .footer {
+  padding: 0 20px;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+.modalBox > .footer > button {
+  width: 140px;
+  height: 50px;
+  border-radius: 20px;
+  border: none;
+  border: 0.5px solid gray;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.modalBox > .footer > button:hover {
+  background: rgb(43, 43, 43);
+  color: white;
+}
+.modalBox > .footer > .delete-btn {
+  background: #D21404;
+  color: white
+}

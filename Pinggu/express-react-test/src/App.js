@@ -1,9 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 import Layout from './Layout';
 import PostsPage from './pages/PostsPage';
 import UserPostsPage from './pages/UserPostsPage';
 import TitlePostsPage from './pages/TitlePostsPage';
 import ContentPostsPage from './pages/ContentPostsPage';
+
+import PostImageSlider from './components/PostImageSlider';
 
 const App = () => {
   return (
