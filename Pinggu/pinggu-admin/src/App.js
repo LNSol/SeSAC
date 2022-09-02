@@ -6,8 +6,6 @@ import UserPostsPage from './pages/UserPostsPage';
 import TitlePostsPage from './pages/TitlePostsPage';
 import ContentPostsPage from './pages/ContentPostsPage';
 
-import PostImageSlider from './components/PostImageSlider';
-
 const App = () => {
   return (
     <Routes>
