@@ -22,7 +22,7 @@ export default class User extends Sequelize.Model {
         defaultValue: 'local',
       },
       nickname: {
-        type: STRING(30),
+        type: STRING(50),
         allowNull: false,
         unique: true,
       },
@@ -37,7 +37,6 @@ export default class User extends Sequelize.Model {
       email: {
         type: STRING(50),
         allowNull: true,
-        unique: true,
       },
       out_date: {
         type: 'TIMESTAMP',
@@ -57,5 +56,9 @@ export default class User extends Sequelize.Model {
   static associate(db) {
     db.User.belongsToMany(db.User, { as: 'Followings',  through: db.Follow, foreignKey: 'host' });
     db.User.belongsToMany(db.User, { as: 'Followers', through: db.Follow, foreignKey: 'follow' });
+    db.User.hasMany(db.Post, { foreignKey: 'user', sourceKey: 'id' });
+    db.User.hasMany(db.Mypings, { foreignKey: 'user', sourceKey: 'id' });
+    db.User.hasMany(db.Sharepings, { foreignKey: 'host', sourceKey: 'id' });
+    db.User.hasMany(db.Sharepings, { foreignKey: 'guest', sourceKey: 'id' });
   }
 }

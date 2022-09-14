@@ -5,7 +5,7 @@ export default class Follow extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
       id: {
-        type: INTEGER,
+        type: INTEGER.UNSIGNED,
         allowNull: false,
         unique: true,
         autoIncrement: true,

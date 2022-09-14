@@ -1,5 +1,6 @@
 import passport from 'passport';
 import kakao from './kakaoStrategy.js';
+import google from './googleStrategy.js';
 import db from '../models/index.js';
 const { User } = db;
 
@@ -15,4 +16,5 @@ export default () => {
   });
 
   kakao();
+  google();
 }

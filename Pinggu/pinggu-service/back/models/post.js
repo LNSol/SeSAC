@@ -1,11 +1,11 @@
 import Sequelize from 'sequelize';
-const { STRING, INTEGER, TEXT } = Sequelize;
+const { STRING, INTEGER, TEXT, TINYINT } = Sequelize;
 
 export default class Post extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
       id: {
-        type: INTEGER,
+        type: INTEGER.UNSIGNED,
         allowNull: false,
         unique: true,
         autoIncrement: true,
@@ -19,18 +19,23 @@ export default class Post extends Sequelize.Model {
         type: TEXT,
         allowNull: true,
       },
-      location_abs: {
-        type: STRING(100),
+      longitude: {
+        type: STRING(50),
         allowNull: false,
       },
-      mypings: {
-        type: INTEGER,
-        allowNull: true,
+      latitude: {
+        type: STRING(50),
+        allowNull: false,
       },
       hits: {
         type: INTEGER,
         allowNull: true,
-        defaultValue: 0
+        defaultValue: 0,
+      },
+      is_public: {
+        type: TINYINT(1),
+        allowNull: false,
+        defaultValue: 1,
       }
     }, {
       sequelize,
@@ -44,6 +49,7 @@ export default class Post extends Sequelize.Model {
     });
   }
   static associate(db) {
-    
+    db.Post.belongsTo(db.User, { foreignKey: 'user', targetKey: 'id' });
+    db.Post.belongsTo(db.Mypings, { foreignKey: 'mypings', targetKey: 'id' });
   }
 }

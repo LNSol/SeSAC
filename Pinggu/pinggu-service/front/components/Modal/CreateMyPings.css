@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.mypings-modal-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.mypings-modal-content > .mypings-modal-box {
+  margin: 50px auto;
+  padding: 20px 40px;
+  width: 650px;
+  height: 750px;
+  background: rgba(240, 240, 240);
+}
+
+/* 헤더 */
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-header {
+  margin-bottom: 20px;
+}
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-header > .mypings-modal-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-header > .mypings-setting-form > .mypings-title {
+  width: 100%;
+  height: 50px;
+  outline: none;
+  font-size: 20px;
+  padding-left: 10px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-header > .mypings-setting-form > .mypings-category-public {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-header > .mypings-setting-form > .mypings-category-public > select {
+  width: 350px;
+  height: 30px;
+  font-size: 15px;
+  padding-left: 10px;
+  margin-right: 100px;
+}
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-header > .mypings-setting-form > .mypings-category-public > .ispublic > input {
+  transform: scale(1.3);
+}
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-header > .mypings-setting-form > .mypings-category-public > .ispublic > label {
+  margin-left: 10px;
+  letter-spacing: 2px;
+}
+
+/* 메인 */
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-main {
+  width: 100%;
+  height: 442px;
+  margin-bottom: 20px;
+}
+
+/* 푸터 */
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-footer > button {
+  width: 140px;
+  height: 50px;
+  font-size: 18px;
+  letter-spacing: 5px;
+  font-weight: 500;
+  background: white;
+  border: 0.5px solid black;
+  border-radius: 2px;
+}
+.mypings-modal-content > .mypings-modal-box > .mypings-modal-footer > button:hover {
+  background: black;
+  color: white;
+}

@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import db from './models/index.js';
@@ -14,12 +15,17 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 import indexRouter from './routes/index.js';
 import authRouter from './routes/auth.js';
+import profileRouter from './routes/profile.js';
+import followRouter from './routes/follow.js';
+import postRouter from './routes/post.js';
+import mypingsRouter from './routes/mypings.js';
 
 dotenv.config();
 const app = express();
 passportConfig();
 app.set('port', process.env.PORT || 4000);
 
+app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(morgan('dev'));
 app.use('/static', express.static(path.join(__dirname, '/public')));
 app.use(express.json());
@@ -48,6 +54,10 @@ sequelize.sync({ force: false })
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/profile', profileRouter);
+app.use('/follow', followRouter);
+app.use('/post', postRouter);
+app.use('/mypings', mypingsRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

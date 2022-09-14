@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 /* TEST */
 router.get('/who', (req, res) => {
   console.log('user >>> ', req.user);
-  console.log('session >>> ', req.session.passport.user);
+  console.log('session >>> ', req.session.passport);
   console.log('sessionId >>> ', req.session.id);
   res.end('im');
 });
