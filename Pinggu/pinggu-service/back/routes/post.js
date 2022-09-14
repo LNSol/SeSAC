@@ -32,7 +32,6 @@ router.get('/nullmypings', (req, res) => {
     }
   })
   .then(posts => {
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.json(posts);
   })
   .catch(err => {

@@ -15,9 +15,11 @@ const MyPage = () => {
     <div>
       <h2>MyPings 생성 테스트</h2>
       <button onClick={openModal}>MyPings 생성</button>
+      {modalOpen &&
       <CreateMyPings open={modalOpen} close={closeModal} header='Create New Mypings'>
-        마이핑스 생성 모다아아아아아알
+        MyPings 생성하기
       </CreateMyPings>
+      }
     </div>
   )
 };

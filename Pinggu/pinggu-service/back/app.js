@@ -12,6 +12,11 @@ import db from './models/index.js';
 const { sequelize } = db;
 const { dirname } = path;
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+  optionsSuccessStatus: 200
+};
 
 import indexRouter from './routes/index.js';
 import authRouter from './routes/auth.js';
@@ -25,7 +30,7 @@ const app = express();
 passportConfig();
 app.set('port', process.env.PORT || 4000);
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
 app.use('/static', express.static(path.join(__dirname, '/public')));
 app.use(express.json());

@@ -32,10 +32,10 @@ export default class Post extends Sequelize.Model {
         allowNull: true,
         defaultValue: 0,
       },
-      is_public: {
+      is_private: {
         type: TINYINT(1),
-        allowNull: false,
-        defaultValue: 1,
+        allowNull: true,
+        defaultValue: 0,
       }
     }, {
       sequelize,

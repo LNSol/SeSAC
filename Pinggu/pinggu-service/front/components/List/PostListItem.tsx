@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
 
@@ -13,7 +13,7 @@ const PostListItemBox = styled.div`
     background: rgba(240, 240, 240, 0.8);
   }
   &.checked {
-    background: rgba(0,0,0,0.7);
+    background: #292929;
     color: rgb(230, 230, 230);
   }
 
@@ -68,11 +68,13 @@ interface IProp {
 const PostListItem = ({ post, onClickSelect }: IProp) => {
   const [checked, setChecked] = useState(false);
 
+  const onClickCheck = useCallback(() => {
+    setChecked(prev => !prev);
+    onClickSelect(post, checked);
+  }, [checked]);
+
   return (
-    <PostListItemBox  className={cn('post-list-item', { checked })} onClick={() => {
-      setChecked(prev => !prev);
-      onClickSelect(post, checked);
-    }}>
+    <PostListItemBox  className={cn('post-list-item', { checked })} onClick={onClickCheck}>
       <div className='image'>
         <div className='main-image'></div>
       </div>

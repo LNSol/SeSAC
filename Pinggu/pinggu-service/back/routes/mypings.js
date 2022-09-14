@@ -57,4 +57,10 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+/* 마이핑스 생성 테스트 */
+router.post('/', (req, res) => {
+  console.log(req.body);
+  res.json({message: 'create'});
+});
+
 export default router;

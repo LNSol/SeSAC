@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
+import { FiAlertCircle } from 'react-icons/fi';
 import './CreateMyPings.css';
 import PostList from '../List/PostList';
 
@@ -33,20 +34,58 @@ interface IProps {
 }
 
 const CreateMyPings = ({ open, close, header, children }: IProps) => {
-  const [ posts, setPosts ] = useState([]);
-  const [ selected, setSelected ] = useState([]);
-
-  const onClickSelect = (post: Post, checked: boolean) => {
-    console.log(post);
-  };
+  const [ posts, setPosts ] = useState<Post[]>([]);
+  const [ title, setTitle ] = useState<string>('');
+  const [ category, setCategory ] = useState<number>(1);
+  const [ isPrivate, setIsPrivate ] = useState<boolean>(false);
+  const [ selected, setSelected ] = useState<Post[]>([]);
+  const inputTitle = useRef<HTMLInputElement>(null);
+  const byteSize = (str: string) => new Blob([str]).size;
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios.get('http://localhost:4000/post/nullmypings', { withCredentials: true });
+      const { data } = await axios.get('http://localhost:4000/post/nullmypings');
       setPosts(prev => { return data });
     };
     getData();
   }, []);
+
+  const onChangeTitle = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(prev => {
+      const titleSize = byteSize(e.target.value);
+      return titleSize > 30 ? prev : e.target.value;
+    });
+  }, [title]);
+  const onChangeCategory = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(prev => parseInt(e.target.value));
+  }, [category]);
+  const onChangeIsPrivate = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsPrivate(prev => e.target.checked);
+  }, [isPrivate]);
+
+  const onClickSelect = useCallback((post: Post, checked: boolean) => {
+    setSelected(prev => {
+      if (prev.includes(post)) {
+        return prev.filter(prevPost => prevPost.id !== post.id);
+      } else {
+        return prev.concat(post);
+      }
+    });
+  }, [selected]);
+
+  const onClickCreate = useCallback(async () => {
+    if (title === '') {
+      const { current } = inputTitle;
+      if (current !== null) {
+        current.focus();
+        current.style.border = '3px solid #ff6b6b';
+        current.placeholder = 'MyPings 이름을 입력해주세요.'
+      }
+      return;
+    }
+    const response = await axios.post('http://localhost:4000/mypings', { title, category, isPrivate, selected });
+    console.log(response.data);
+  }, [title, category, isPrivate, selected]);
 
   return (
     <div className='mypings-modal-content'>
@@ -54,15 +93,15 @@ const CreateMyPings = ({ open, close, header, children }: IProps) => {
         <header className='mypings-modal-header'>
           <h1 className='mypings-modal-title'>{children}</h1>
           <form className='mypings-setting-form'>
-            <input className='mypings-title' placeholder='MyPings 이름' /><br />
+            <input className='mypings-title' placeholder='MyPings 이름' value={title} ref={inputTitle} onChange={onChangeTitle} /><br />
             <div className='mypings-category-public'>
-              <select>
+              <select onChange={onChangeCategory}>
                 {options.map(option => (
                   <option value={option.value}>{option.text}</option>
                 ))}
               </select>
               <div className='ispublic'>
-                <input id='private-chk' type='checkbox' />
+                <input id='private-chk' type='checkbox' onChange={onChangeIsPrivate}/>
                 <label htmlFor='private-chk'>비공개</label>
               </div>
             </div>
@@ -72,8 +111,8 @@ const CreateMyPings = ({ open, close, header, children }: IProps) => {
           <PostList posts={posts} onClickSelect={onClickSelect} />
         </main>
         <footer className='mypings-modal-footer'>
-          <button type='button' onClick={close}>취소</button>
-          <button type='button'>생성</button>
+          <button className='cancel-button' type='button' onClick={close}>취소</button>
+          <button className='create-button' type='button' onClick={onClickCreate}>생성</button>
         </footer>
       </div>
     </div>
