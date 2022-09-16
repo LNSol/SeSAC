@@ -43,7 +43,7 @@ export default class Post extends Sequelize.Model {
       paranoid: false,
       underscored: true,
       modelName: 'Post',
-      tableName: 'POST',
+      tableName: 'post',
       charset: 'utf8',
       collate: 'utf8_general_ci'
     });

@@ -14,23 +14,33 @@ const PostListBox = styled.div`
 type Post = {
   id: number
   createdAt: string
-  updatedAt: string
+  updated_at: string
   title: string
   content: string
   longitude: string
   latitude: string
   user: number
   mypings: number | null
-  is_public: boolean
+  is_private: boolean
+  Myping?: Mypings
 }
 
-interface IProp {
-  posts: Array<Post>
-  onClickSelect: (post: Post, checked: boolean) => void
+type Mypings = {
+  id: number
+  createdAt: string
+  updated_at: string
+  user: number
+  title: string
+  category: number,
+  is_private: boolean
 }
 
-const PostList = ({ posts, onClickSelect }: IProp) => {
+interface IProps {
+  posts: Post[]
+  onClickSelect: (post: Post) => void
+}
 
+const PostList = ({ posts, onClickSelect }: IProps) => {
   return (
     <PostListBox>
       {posts.map(post => (

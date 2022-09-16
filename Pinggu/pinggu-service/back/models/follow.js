@@ -22,4 +22,8 @@ export default class Follow extends Sequelize.Model {
       collate: 'utf8_general_ci'
     });
   }
+  static associate(db) {
+    db.Follow.belongsTo(db.User, { foreignKey: 'host', targetKey: 'id' });
+    db.Follow.belongsTo(db.User, { foreignKey: 'follow', targetKey: 'id' });
+  }
 }

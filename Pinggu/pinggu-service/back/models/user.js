@@ -54,8 +54,8 @@ export default class User extends Sequelize.Model {
     });
   }
   static associate(db) {
-    db.User.belongsToMany(db.User, { as: 'Followings',  through: db.Follow, foreignKey: 'host' });
-    db.User.belongsToMany(db.User, { as: 'Followers', through: db.Follow, foreignKey: 'follow' });
+    db.User.hasMany(db.Follow, { foreignKey: 'host', sourceKey: 'id' });
+    db.User.hasMany(db.Follow, { foreignKey: 'follow', sourceKey: 'id' });
     db.User.hasMany(db.Post, { foreignKey: 'user', sourceKey: 'id' });
     db.User.hasMany(db.Mypings, { foreignKey: 'user', sourceKey: 'id' });
     db.User.hasMany(db.Sharepings, { foreignKey: 'host', sourceKey: 'id' });

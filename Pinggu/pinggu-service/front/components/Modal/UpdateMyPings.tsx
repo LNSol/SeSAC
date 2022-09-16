@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import axios from 'axios';
-import { FiAlertCircle } from 'react-icons/fi';
-import './CreateMyPings.css';
 import PostList from '../List/PostList';
 
 const options = [
@@ -24,25 +22,42 @@ type Post = {
   user: number
   mypings: number | null
   is_private: boolean
+  Myping?: Mypings
+}
+
+type Mypings = {
+  id: number
+  createdAt: string
+  updated_at: string
+  user: number
+  title: string
+  category: number,
+  is_private: boolean
 }
 
 interface IProps {
-  close: () => void,
-  children: string,
+  close: () => void
+  children: string
 }
 
-const CreateMyPings = ({ close, children }: IProps) => {
-  const [ posts, setPosts ] = useState<Post[]>([]);
-  const [ title, setTitle ] = useState<string>('');
-  const [ category, setCategory ] = useState<number>(1);
-  const [ is_private, setIsPrivate ] = useState<boolean>(false);
-  const [ selected, setSelected ] = useState<Post[]>([]);
+const UpdateMyPings = ({ close, children }: IProps) => {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [title, setTitle] = useState<string>('');
+  const [category, setCategory] = useState<number>(1);
+  const [is_private, setIsPrivate] = useState<boolean>(false);
+  const [selected, setSelected] = useState<Post[]>([]);
   const inputTitle = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios.get('http://localhost:4000/post/mypings/null');
-      setPosts(prev => { return data });
+      const { data } = await axios.get('http://localhost:4000/mypings/4');
+      setPosts(prev => { return data; });
+      setTitle(prev => { return data[0].Myping.title; });
+      setCategory(prev => { return data[0].Myping.category; });
+      setIsPrivate(prev => { return data[0].Myping.is_private; });
+      setSelected(prev => {
+        return data.filter((post: Post) => { return post.Myping !== null });
+      });
     };
     getData();
   }, []);
@@ -53,35 +68,40 @@ const CreateMyPings = ({ close, children }: IProps) => {
       return titleByteSize > 30 ? prev : e.target.value;
     });
   }, [title]);
+
   const onChangeCategory = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(prev => parseInt(e.target.value));
+    console.log(e.target.value);
   }, [category]);
-  const onChangeIsPrivate = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsPrivate(prev => e.target.checked);
+
+  const onChangeIsPrivate = useCallback(() => {
+    setIsPrivate(prev => !prev);
   }, [is_private]);
 
   const onClickSelect = useCallback((post: Post) => {
     setSelected(prev => {
-      if (prev.includes(post)) {
-        return prev.filter(prevPost => prevPost.id !== post.id);
+      if (prev.find(prevPost => prevPost.id === post.id)) {
+        return prev.filter(p => p.id !== post.id);
       } else {
         return prev.concat(post);
       }
     });
   }, [selected]);
 
-  const onClickCreate = useCallback(async () => {
+  const onClickUpdate = useCallback(async () => {
     if (title === '') {
       const { current } = inputTitle;
       if (current !== null) {
         current.focus();
-        current.placeholder = 'MyPings 이름을 입력해주세요.'
+        current.placeholder = 'MyPings 이름을 입력해주세요.';
       }
       return;
     }
-    const result = await axios.post('http://localhost:4000/mypings', { title, category, is_private, posts: selected});
-    console.log(result.data);
-    close();
+
+    try {
+      const result = await axios.put('http://localhost:4000/mypings/4', { title, category, is_private, posts: selected });
+    } catch (error) {
+      console.log(error);
+    }
   }, [title, category, is_private, selected]);
 
   return (
@@ -90,15 +110,15 @@ const CreateMyPings = ({ close, children }: IProps) => {
         <header className='mypings-modal-header'>
           <h1 className='mypings-modal-title'>{children}</h1>
           <form className='mypings-setting-form'>
-            <input className='mypings-title' placeholder='MyPings 이름' value={title} ref={inputTitle} onChange={onChangeTitle} /><br />
+            <input className='mypings-title' ref={inputTitle} placeholder='MyPings 이름' value={title} onChange={onChangeTitle} /><br />
             <div className='mypings-category-public'>
-              <select onChange={onChangeCategory}>
+              <select value={category} onChange={onChangeCategory}>
                 {options.map(option => (
                   <option value={option.value}>{option.text}</option>
                 ))}
               </select>
               <div className='ispublic'>
-                <input id='private-chk' type='checkbox' onChange={onChangeIsPrivate}/>
+                <input id='private-chk' type='checkbox' checked={is_private} onChange={onChangeIsPrivate} />
                 <label htmlFor='private-chk'>비공개</label>
               </div>
             </div>
@@ -109,10 +129,11 @@ const CreateMyPings = ({ close, children }: IProps) => {
         </main>
         <footer className='mypings-modal-footer'>
           <button className='cancel-button' type='button' onClick={close}>취소</button>
-          <button className='create-button' type='button' onClick={onClickCreate}>생성</button>
+          <button className='create-button' type='button' onClick={onClickUpdate}>완료</button>
         </footer>
       </div>
     </div>
   );
 };
-export default CreateMyPings;
+
+export default UpdateMyPings;

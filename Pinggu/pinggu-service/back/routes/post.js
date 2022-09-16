@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 });
 
 /* 마이핑스 추가-마이핑스 값이 없는 포스트 목록 */
-router.get('/nullmypings', (req, res) => {
+router.get('/mypings/null', (req, res) => {
   Post.findAll({
     where: {
       mypings: null,

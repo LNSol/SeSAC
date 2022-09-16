@@ -31,6 +31,7 @@ Mypings.init(sequelize);
 Sharepings.init(sequelize);
 
 User.associate(db);
+Follow.associate(db);
 Post.associate(db);
 Category.associate(db);
 Mypings.associate(db);

@@ -27,7 +27,7 @@ export default class Mypings extends Sequelize.Model {
       paranoid: false,
       underscored: true,
       modelName: 'Mypings',
-      tableName: 'MYPINGS',
+      tableName: 'mypings',
       charset: 'utf8',
       collate: 'utf8_general_ci'
     });

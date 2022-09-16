@@ -7,7 +7,7 @@ const router = express.Router();
 /* 마이페이지-내 팔로워 목록 보기 */
 router.get('/followers', (req, res) => {
   try {
-    Follow.findAll({ where: { follow: req.user.id }})
+    Follow.findAll({ where: { follow: 7 }})
     .then(followers => {
       console.log('follwers >>> ', followers);
       res.json(followers);
@@ -56,7 +56,7 @@ router.get('/:id', (req, res) => {
     res.json(error);
   }
 });
-/* 언팔로우하기 */
+/* 언팔로우하기 delete ?*/
 router.get('/cancel/:id', (req, res) => {
   try {
     Follow.destroy({ where: { host: req.user.id, follow: req.params.id }})

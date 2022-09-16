@@ -24,6 +24,7 @@ import profileRouter from './routes/profile.js';
 import followRouter from './routes/follow.js';
 import postRouter from './routes/post.js';
 import mypingsRouter from './routes/mypings.js';
+import testRouter from './routes/user.js';
 
 dotenv.config();
 const app = express();
@@ -63,6 +64,7 @@ app.use('/profile', profileRouter);
 app.use('/follow', followRouter);
 app.use('/post', postRouter);
 app.use('/mypings', mypingsRouter);
+app.use('/test', testRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

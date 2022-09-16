@@ -5,6 +5,7 @@ import cn from 'classnames';
 const PostListItemBox = styled.div`
   padding: 5px 10px;
   display: flex;
+  position: relative;
   cursor: pointer;
   & + & {
     border-top: 0.5px solid gray;
@@ -50,27 +51,39 @@ const PostListItemBox = styled.div`
 type Post = {
   id: number
   createdAt: string
-  updatedAt: string
+  updated_at: string
   title: string
   content: string
   longitude: string
   latitude: string
   user: number
   mypings: number | null
-  is_public: boolean
+  is_private: boolean
+  Myping?: Mypings
 }
 
-interface IProp {
-  post: Post,
-  onClickSelect: (post: Post, checked: boolean) => void
+type Mypings = {
+  id: number
+  createdAt: string
+  updated_at: string
+  user: number
+  title: string
+  category: number,
+  is_private: boolean
 }
 
-const PostListItem = ({ post, onClickSelect }: IProp) => {
-  const [checked, setChecked] = useState(false);
+interface IProps {
+  post: Post
+  onClickSelect: (post: Post) => void
+}
+
+const PostListItem = ({ post, onClickSelect }: IProps) => {
+  const isChecked = !!post.Myping;
+  const [checked, setChecked] = useState<boolean>(isChecked);
 
   const onClickCheck = useCallback(() => {
     setChecked(prev => !prev);
-    onClickSelect(post, checked);
+    onClickSelect(post);
   }, [checked]);
 
   return (
