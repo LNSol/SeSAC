@@ -6,6 +6,11 @@ router.get('/', (req, res) => {
   res.send('MAIN');
 });
 
+/* 세션에 저장된 사용자 정보 가져오기 */
+router.get('/me', (req, res) => {
+  res.json(req.session.passport.user);
+});
+
 
 /* TEST */
 router.get('/who', (req, res) => {
