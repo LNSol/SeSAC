@@ -10,7 +10,9 @@ const Home = loadable(() => import('@pages/Home'));
 const App = () => {
   return (
     <Layout>
-      <Switch>{/*<Route path={'/'} component={Home} />*/}</Switch>
+      <Switch>
+        {/* <Route exact path='/users/:userId/mypings/:mypingsId' component={(ViewMypings)} /> */}
+      </Switch>
     </Layout>
   );
 };

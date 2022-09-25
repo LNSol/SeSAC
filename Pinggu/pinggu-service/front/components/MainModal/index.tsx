@@ -10,6 +10,8 @@ const Home = loadable(() => import('@pages/Home'));
 const About = loadable(() => import('@pages/About'));
 const MyPage = loadable(() => import('@pages/MyPage'));
 const Settings = loadable(() => import('@pages/Settings'));
+const ViewMypings = loadable(() => import('../../pages/Mypings/ViewMypings'));
+const CreateMypings = loadable(() => import('../../pages/Mypings/CreateMypings'));
 interface IProps {
   show: boolean;
   onCloseModal: () => void;
@@ -50,6 +52,8 @@ const MainModal: FC<IProps> = ({ show, onCloseModal }) => {
           <MdKeyboardArrowLeft />
         </CloseButton>
         <Switch>
+          <Route path={'/mypings/create'} component={CreateMypings} />
+          <Route path={'/users/:userId/mypings/:mypingsId'} component={ViewMypings} />
           <Route path={'/explore'} component={Home} />
           <Route path={'/mypage'} component={MyPage} />
           <Route path={'/settings'} component={Settings} />

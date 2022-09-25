@@ -1,0 +1,47 @@
+.mypings-top {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.back-btn {
+  width: 25px;
+}
+.back-btn {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.back-btn:hover {
+  color: #ffcc35;
+}
+.top-title {
+  text-align: center;
+}
+.mypings-bottom {
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.mypings-bottom > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  width: 120px;
+  height: 40px;
+  letter-spacing: 5px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.mypings-bottom > div:hover {
+  background: #ffcc35;
+  color: #292929;
+}
+.mypings-btn-cancel {
+  background: white;
+}
+.mypings-btn-create {
+  background: black;
+  color: white;
+}
